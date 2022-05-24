@@ -1,99 +1,44 @@
-import { FC, useRef } from 'react'
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import {
-  Box,
-  Button,
-  Flex,
-  Icon,
-  IconButton,
-  Text,
-  useColorMode,
-} from '@chakra-ui/react'
-import { VscColorMode } from 'react-icons/vsc'
-import { IoGrid } from 'react-icons/io5'
-import { useOutsideClick } from 'utils/hooks/useClickOutside'
+import { Button, Flex, HStack, IconButton, Text } from '@chakra-ui/react'
+import { HiOutlineMenuAlt4 } from 'react-icons/hi'
 import { useLanguage } from 'utils/hooks/useLanguage'
-import { config } from 'configs/config'
-import Menu from './Menu'
 
-const Header: FC = () => {
+export const Header: React.FC = () => {
   const { t } = useTranslation('common')
-  const { asPath, pathname, push, query } = useRouter()
-  const { isEnglish, languageChange } = useLanguage()
-  const ref = useRef<HTMLDivElement>(null)
-  const { isOpen, onClose, onToggle } = useOutsideClick({ ref })
-
-  const { colorMode, toggleColorMode } = useColorMode()
-  const isDark = colorMode === 'dark'
+  const { isEnglish } = useLanguage()
 
   return (
     <Flex
       as='header'
-      id='top'
-      bg={isDark ? 'gray.800' : 'white'}
-      padding='2'
-      borderRadius='lg'
+      pos='sticky'
+      zIndex='sticky'
+      top='0'
+      left='0'
+      right='0'
+      bg='white'
       align='center'
       justify='space-between'
-      boxShadow='lg'
-      marginTop='6'
-      sx={{ scrollMarginTop: '2rem' }}
+      px='8'
+      pt={{ base: '8', md: '12' }}
+      pb='4'
+      borderColor='black'
+      borderBottom='1px solid'
     >
-      <Flex align='start' direction={['row', 'column', 'row']}>
-        <Text fontWeight='bold' marginLeft='2' fontSize='lg' whiteSpace='pre'>
-          George Christeas
-        </Text>
-        <Text
-          marginLeft='2'
-          fontSize='lg'
-          whiteSpace='pre'
-          display={['none', 'block']}
-        >
-          {t('developer')}
-        </Text>
-      </Flex>
-      <Box>
-        <IconButton
-          icon={
-            <Icon
-              as={VscColorMode}
-              transform={isDark ? 'rotate(180deg)' : undefined}
-              transition='transform 1.5s ease'
-            />
-          }
-          aria-label={`${isDark ? 'Light' : 'Dark'} Mode`}
-          title={`${isDark ? 'Light' : 'Dark'} Mode`}
-          onClick={toggleColorMode}
-          variant='icon-button'
-          data-splitbee-event={config.splitbee.events.toggledDarkMode}
-        />
-        <Button
-          padding='0'
-          aria-label={languageChange}
-          title={languageChange}
-          onClick={() =>
-            push({ pathname, query }, asPath, {
-              locale: isEnglish ? 'fr' : 'en',
-            })
-          }
-          marginLeft='2'
-          variant='icon-button'
-        >
+      <Text fontWeight='bold' fontSize='2xl' casing='uppercase'>
+        George Christeas
+      </Text>
+      <HStack spacing='2'>
+        <Button variant='icon' size='icon'>
           {isEnglish ? 'FR' : 'EN'}
         </Button>
         <IconButton
-          icon={<IoGrid />}
-          aria-label='Menu'
-          title='Menu'
-          onClick={onToggle}
-          marginLeft='2'
-          variant='icon-button'
+          aria-label={t('open-menu')}
+          icon={<HiOutlineMenuAlt4 />}
+          variant='icon'
+          size='icon'
+          p='0'
         />
-      </Box>
-      {isOpen && <Menu ref={ref} onClose={onClose} />}
+      </HStack>
     </Flex>
   )
 }
-
-export default Header
