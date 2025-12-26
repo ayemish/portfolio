@@ -1,3 +1,4 @@
+import React from 'react'
 import { useTranslation } from 'next-i18next'
 import { Flex, Link, Text, HStack, IconButton, Stack } from '@chakra-ui/react'
 import { VscArrowUp } from 'react-icons/vsc'
@@ -7,6 +8,12 @@ const links: { name: string; href: string }[] = [
   { name: 'Email', href: config.email_link },
   { name: 'Github', href: config.github },
 ]
+
+const ArrowUpIcon: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const Icon = VscArrowUp as any
+  return <Icon />
+}
 
 export const Footer: React.FC = () => {
   const { t } = useTranslation('common')
@@ -56,7 +63,7 @@ export const Footer: React.FC = () => {
         <IconButton
           aria-label={t('go-to-top')}
           title={t('go-to-top')}
-          icon={<VscArrowUp />}
+          icon={<ArrowUpIcon />}
           variant='icon'
           size='icon'
           onClick={() => window.scrollTo(0, 0)}

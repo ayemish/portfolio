@@ -1,3 +1,4 @@
+import React from 'react'
 import { useTranslation } from 'next-i18next'
 import NextLink from 'next/link'
 import {
@@ -13,6 +14,18 @@ import { VscChromeClose } from 'react-icons/vsc'
 import { NAME } from '@config/config'
 import { Menu } from './Menu'
 import { NavItem, type NavItemProps } from './NavItem'
+
+const MenuIcon: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const Icon = HiOutlineMenuAlt4 as any
+  return <Icon />
+}
+
+const CloseIcon: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const Icon = VscChromeClose as any
+  return <Icon />
+}
 
 const navItems: Omit<NavItemProps, 'onClose'>[] = [
   { name: 'home', href: '/' },
@@ -61,7 +74,7 @@ export const Header: React.FC = () => {
         </HStack>
         <IconButton
           aria-label={t(isOpen ? 'close-menu' : 'open-menu')}
-          icon={isOpen ? <VscChromeClose /> : <HiOutlineMenuAlt4 />}
+          icon={isOpen ? <CloseIcon /> : <MenuIcon />}
           variant='icon'
           size='icon'
           onClick={onToggle}
