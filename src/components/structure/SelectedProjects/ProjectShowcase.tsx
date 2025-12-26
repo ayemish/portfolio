@@ -8,29 +8,34 @@ import {
   HStack,
   Link,
   Stack,
+  Tag,
   Text,
   VStack,
+  Wrap,
 } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
-import { usePostHog } from 'posthog-js/react'
 import type { Project } from '@utils/types'
 
 const MotionBox = motion(Box)
 
 export const ProjectShowcase: React.FC<Project> = ({
   title,
+  subtitle,
   description,
   image,
-  homepage,
+  imageWidth,
+  imageHeight,
+  link,
   github,
+  tags,
+  year,
 }) => {
-  const { t, i18n } = useTranslation('common')
-  const posthog = usePostHog()
+  const { t } = useTranslation('common')
 
   return (
     <Stack
       direction={{ base: 'column', md: 'row' }}
-      h='96'
+      minH='96'
       px='6'
       borderColor='black'
       border='1px solid'
@@ -39,37 +44,36 @@ export const ProjectShowcase: React.FC<Project> = ({
       overflow='hidden'
     >
       <VStack flex='2' py='4' align='flex-start' justify='center' spacing='4'>
-        <Heading as='h3'>{title}</Heading>
+        <VStack align='flex-start' spacing='1'>
+          <Heading as='h3'>{title}</Heading>
+          <Text fontSize='sm' color='gray.600' fontWeight='semibold'>
+            {subtitle}
+          </Text>
+          {year && (
+            <Text fontSize='xs' color='gray.500'>
+              {year}
+            </Text>
+          )}
+        </VStack>
         <Divider opacity='1' />
-        <Text>{description[i18n.language as keyof typeof description]}</Text>
+        <Box>{description}</Box>
+        {tags && tags.length > 0 && (
+          <Wrap spacing='2'>
+            {tags.map((tag, index) => (
+              <Tag key={index} size='sm' variant='outline' borderColor='black'>
+                {tag}
+              </Tag>
+            ))}
+          </Wrap>
+        )}
         <HStack spacing='4'>
-          {homepage && (
-            <Link
-              href={homepage}
-              variant='projectLink'
-              onClick={() =>
-                posthog.capture('project_link_clicked', {
-                  type: 'website',
-                  title,
-                })
-              }
-              isExternal
-            >
+          {link && (
+            <Link href={link} variant='projectLink' isExternal>
               {t('website')}
             </Link>
           )}
           {github && (
-            <Link
-              href={github}
-              variant='projectLink'
-              onClick={() =>
-                posthog.capture('project_link_clicked', {
-                  type: 'github',
-                  title,
-                })
-              }
-              isExternal
-            >
+            <Link href={github} variant='projectLink' isExternal>
               Github
             </Link>
           )}
@@ -85,7 +89,7 @@ export const ProjectShowcase: React.FC<Project> = ({
           borderBottom='none'
           borderTopRadius='1.375rem'
         >
-          <ImageWithBorder title={title} image={image} />
+          <ImageWithBorder title={title} image={image} imageWidth={imageWidth} imageHeight={imageHeight} />
         </Box>
         <MotionBox
           display={{ base: 'none', md: 'block' }}
@@ -103,16 +107,18 @@ export const ProjectShowcase: React.FC<Project> = ({
           initial={{ y: '4rem' }}
           whileHover={{ y: '2.5rem' }}
         >
-          <ImageWithBorder title={title} image={image} />
+          <ImageWithBorder title={title} image={image} imageWidth={imageWidth} imageHeight={imageHeight} />
         </MotionBox>
       </Flex>
     </Stack>
   )
 }
 
-const ImageWithBorder: React.FC<Pick<Project, 'title' | 'image'>> = ({
+const ImageWithBorder: React.FC<Pick<Project, 'title' | 'image' | 'imageWidth' | 'imageHeight'>> = ({
   title,
   image,
+  imageWidth,
+  imageHeight,
 }) => (
   <Box
     pos='relative'
@@ -124,6 +130,13 @@ const ImageWithBorder: React.FC<Pick<Project, 'title' | 'image'>> = ({
     borderLeft='1px solid'
     borderRight='1px solid'
   >
-    <NextImage src={image.src} alt={title} draggable='false' />
+    <NextImage
+      src={image}
+      alt={title}
+      width={imageWidth}
+      height={imageHeight}
+      draggable='false'
+      style={{ objectFit: 'cover' }}
+    />
   </Box>
 )

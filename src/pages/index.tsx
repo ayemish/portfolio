@@ -8,17 +8,16 @@ import {
   SelectedProjects,
   SkillSet,
   SlashDivider,
+  Work,
 } from '@components/structure'
-import { useLogMessage } from '@utils/hooks/use-log-message'
 import { config } from '@config/config'
 
 const Home: NextPage = () => {
-  useLogMessage()
-
   return (
     <MainLayout>
       <Hero />
       <SlashDivider />
+      <Work />
       <SelectedProjects />
       <OpenSource />
       <SkillSet />

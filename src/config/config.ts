@@ -1,7 +1,7 @@
 import type { DefaultSeoProps } from 'next-seo'
 import { i18n } from '../../next-i18next.config'
 
-export const NAME = 'George Christeas'
+export const NAME = 'Muhammad Asim'
 
 export const config: Config = {
   isDev: process.env.NODE_ENV === 'development',
@@ -12,38 +12,37 @@ export const config: Config = {
     title: `${NAME} // Full-Stack Software Developer`,
     description:
       'I build things with my mouse and keyboard. Welcome to my software developer portfolio.',
-    canonical: 'https://chr-ge.com',
     openGraph: {
       type: 'website',
       locale: 'en_US',
-      url: 'https://chr-ge.com',
       title: `${NAME} // Full-Stack Software Developer`,
       description:
         'I build things with my mouse and keyboard. Welcome to my software developer portfolio.',
       site_name: `${NAME} // Full-Stack Software Developer`,
       images: [
         {
-          url: 'https://chr-ge.com/img/banner.png',
+          url: '/img/banner.png',
           width: 1200,
           height: 630,
-          alt: 'chr-ge banner',
+          alt: 'portfolio banner',
         },
       ],
     },
     twitter: {
       cardType: 'summary',
     },
-    languageAlternates: [
-      { hrefLang: 'en', href: 'https://chr-ge.com' },
-      { hrefLang: 'fr', href: 'https://chr-ge.com/fr' },
-    ],
     additionalMetaTags: [
       { httpEquiv: 'x-ua-compatible', content: 'IE=edge; chrome=1' },
-      { property: 'msapplication-TileColor', content: '#ffc40d' },
+      { property: 'msapplication-TileColor', content: '#000000' },
       { property: 'msapplication-config', content: '/icons/browserconfig.xml' },
       { property: 'theme-color', content: '#ffffff' },
     ],
     additionalLinkTags: [
+      {
+        rel: 'icon',
+        type: 'image/svg+xml',
+        href: '/icons/favicon.svg',
+      },
       {
         rel: 'apple-touch-icon',
         sizes: '180x180',
@@ -65,15 +64,14 @@ export const config: Config = {
       {
         rel: 'mask-icon',
         href: '/icons/safari-pinned-tab.svg',
-        color: '#ffc40d',
+        color: '#000000',
       },
       { rel: 'shortcut icon', href: '/icons/favicon.ico' },
     ],
   },
-  email: 'george@chr-ge.com',
-  email_link: 'mailto:george@chr-ge.com',
-  github: 'https://github.com/chr-ge',
-  linkedin: 'https://www.linkedin.com/in/chr-ge/',
+  email: 'asimshahid.rauf@gmail.com',
+  email_link: 'mailto:asimshahid.rauf@gmail.com',
+  github: 'https://github.com/asim-shahid',
 }
 
 interface Config {
@@ -85,5 +83,4 @@ interface Config {
   email: string
   email_link: string
   github: string
-  linkedin: string
 }

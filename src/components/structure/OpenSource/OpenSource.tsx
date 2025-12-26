@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next'
 import { Box, Heading, SimpleGrid, VStack } from '@chakra-ui/react'
-import { contributions } from '@data/contributions'
-import { Contribution } from './Contribution'
+import archive from '@data/archive'
+import { ArchiveProject } from './ArchiveProject'
 
 export const OpenSource: React.FC = () => {
   const { t } = useTranslation('common')
@@ -28,7 +28,7 @@ export const OpenSource: React.FC = () => {
           size='2xl'
           wordBreak={{ base: 'break-all', sm: 'break-word' }}
         >
-          {t('open-source')}
+          {t('other-projects')}
         </Heading>
       </Box>
       <SimpleGrid
@@ -36,8 +36,8 @@ export const OpenSource: React.FC = () => {
         px={{ base: '4', md: '8' }}
         spacing='16'
       >
-        {contributions.map((contribution) => (
-          <Contribution key={contribution.repository} {...contribution} />
+        {archive.map((project, index) => (
+          <ArchiveProject key={`${project.title}-${index}`} {...project} />
         ))}
       </SimpleGrid>
     </VStack>

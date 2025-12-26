@@ -1,8 +1,7 @@
 import { useTranslation } from 'next-i18next'
 import { Heading, VStack } from '@chakra-ui/react'
 import { motion, type Variants } from 'framer-motion'
-import { projects } from '@data/projects'
-import { OtherProjectsMarquee } from './OtherProjectsMarquee'
+import projects from '@data/projects'
 import { ProjectShowcase } from './ProjectShowcase'
 
 const container: Variants = {
@@ -27,37 +26,32 @@ export const SelectedProjects: React.FC = () => {
   const { t } = useTranslation('common')
 
   return (
-    <>
-      <VStack
-        id='projects'
-        as='section'
+    <VStack
+      id='projects'
+      as='section'
+      align='stretch'
+      py='20'
+      px={{ base: '4', md: '8' }}
+      spacing='16'
+      scrollMarginTop='var(--chakra-sizes-header-height)'
+    >
+      <Heading as='h2' variant='section' size='2xl'>
+        {t('selected-projects')}
+      </Heading>
+      <MotionVStack
         align='stretch'
-        py='20'
-        px={{ base: '4', md: '8' }}
-        spacing='16'
-        scrollMarginTop='var(--chakra-sizes-header-height)'
+        spacing='12'
+        variants={container}
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ once: true }}
       >
-        <Heading as='h2' variant='section' size='2xl'>
-          {t('selected-projects')}
-        </Heading>
-        <MotionVStack
-          align='stretch'
-          spacing='12'
-          variants={container}
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: true }}
-        >
-          {projects
-            .filter((project) => project.isShowcased)
-            .map((project) => (
-              <motion.div key={project.id} variants={item}>
-                <ProjectShowcase {...project} />
-              </motion.div>
-            ))}
-        </MotionVStack>
-      </VStack>
-      <OtherProjectsMarquee />
-    </>
+        {projects.map((project, index) => (
+          <motion.div key={`${project.title}-${index}`} variants={item}>
+            <ProjectShowcase {...project} />
+          </motion.div>
+        ))}
+      </MotionVStack>
+    </VStack>
   )
 }

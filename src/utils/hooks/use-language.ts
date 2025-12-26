@@ -3,10 +3,9 @@ import { useRouter } from 'next/router'
 export const useLanguage = () => {
   const router = useRouter()
 
-  const locale = (router.locale ?? 'en') as 'en' | 'fr'
-  const isEnglish = locale === 'en'
-  const language = isEnglish ? 'English' : 'Français'
-  const languageChange = isEnglish ? 'Français' : 'English'
+  const locale = (router.locale ?? 'en') as 'en'
+  const isEnglish = true
+  const language = 'English'
 
-  return { locale, isEnglish, language, languageChange }
+  return { locale, isEnglish, language }
 }

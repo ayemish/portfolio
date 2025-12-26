@@ -37,24 +37,11 @@ module.exports = withBundleAnalyzer({
   redirects: async () => [
     {
       source: '/github',
-      destination: 'https://github.com/chr-ge',
+      destination: 'https://github.com/asim-shahid',
       permanent: true,
     },
   ],
-  rewrites: async () => [
-    {
-      source: '/ingest/static/:path*',
-      destination: 'https://us-assets.i.posthog.com/static/:path*',
-    },
-    {
-      source: '/ingest/:path*',
-      destination: 'https://us.i.posthog.com/:path*',
-    },
-    {
-      source: '/ingest/decide',
-      destination: 'https://us.i.posthog.com/decide',
-    },
-  ],
+  rewrites: async () => [],
   skipTrailingSlashRedirect: true,
   i18n,
 })

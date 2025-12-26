@@ -10,14 +10,13 @@ import {
   Text,
 } from '@chakra-ui/react'
 import type { RoleType, Skill } from '@utils/types'
-import { config } from '@config/config'
 
 export interface ContributionProps {
   user: string
   repository: string
   role: RoleType
   githubUrl: string
-  description: { en: string; fr: string }
+  description: string
   topics: string[]
   language: Skill
 }
@@ -31,7 +30,7 @@ export const Contribution: React.FC<ContributionProps> = ({
   topics,
   language,
 }) => {
-  const { t, i18n } = useTranslation('common')
+  const { t } = useTranslation('common')
 
   return (
     <LinkBox
@@ -56,7 +55,7 @@ export const Contribution: React.FC<ContributionProps> = ({
           <Badge colorScheme={role.color}>{t(role.label)}</Badge>
         </Flex>
         <Text flex='1' mb='4'>
-          {description[i18n.language as keyof typeof description]}
+          {description}
         </Text>
         <Flex justify='space-between'>
           <HStack>

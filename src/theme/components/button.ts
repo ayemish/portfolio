@@ -52,11 +52,12 @@ export const Button: ComponentSingleStyleConfig = {
       borderRadius: 0,
       bg: 'white',
       justifyContent: 'flex-start',
-      minW: '44',
-      h: '20',
+      minW: '32',
+      h: '12',
       borderColor: 'black',
       border: '1px solid',
-      px: '8',
+      px: '6',
+      fontSize: 'sm',
       _hover: {
         backgroundImage:
           'repeating-linear-gradient(135deg, transparent, transparent 24px, rgba(0, 0, 0, 1) 24px, rgba(0, 0, 0, 1) 25px)',

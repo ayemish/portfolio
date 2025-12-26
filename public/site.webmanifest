@@ -1,6 +1,6 @@
 {
-  "name": "George Christeas",
-  "short_name": "CHR-GE",
+  "name": "Muhammad Asim M A",
+  "short_name": "MA",
   "description": "Full-Stack Software Developer",
   "start_url": ".",
   "icons": [
@@ -15,7 +15,7 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "background_color": "#000000",
   "display": "browser"
 }

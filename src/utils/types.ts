@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import type { StaticImageData } from 'next/image'
 import type { IconProps } from '@chakra-ui/react'
 import type { IconType } from 'react-icons'
@@ -29,16 +30,15 @@ export interface SkillGroup {
 }
 
 export interface Project {
-  id: string
   title: string
-  description: {
-    en: string
-    fr: string
-  }
-  image: Image
-  homepage?: string
+  subtitle: string
+  description: ReactNode
+  tags: string[]
   github?: string
-  technologies: Skill[]
-  tags: Tag[]
-  isShowcased: boolean
+  image: string
+  imageHeight: number
+  imageWidth: number
+  link?: string
+  video?: string
+  year?: number | string
 }
