@@ -5,7 +5,6 @@ import { VscArrowUp } from 'react-icons/vsc'
 import { config } from '@config/config'
 
 const links: { name: string; href: string }[] = [
-  { name: 'Email', href: config.email_link },
   { name: 'Github', href: config.github },
 ]
 

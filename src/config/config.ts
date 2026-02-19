@@ -69,8 +69,6 @@ export const config: Config = {
       { rel: 'shortcut icon', href: '/icons/favicon.ico' },
     ],
   },
-  email: 'asimshahid.rauf@gmail.com',
-  email_link: 'mailto:asimshahid.rauf@gmail.com',
   github: 'https://github.com/asim-shahid',
 }
 
@@ -80,7 +78,5 @@ interface Config {
   revalidateDelay: number
   copyright: string
   seo: DefaultSeoProps
-  email: string
-  email_link: string
   github: string
 }

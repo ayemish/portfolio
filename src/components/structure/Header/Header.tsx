@@ -32,7 +32,6 @@ const navItems: Omit<NavItemProps, 'onClose'>[] = [
   { name: 'work', href: '/#work' },
   { name: 'projects', href: '/#projects' },
   { name: 'bookmarks', href: '/bookmarks' },
-  { name: 'contact', href: '/#contact' },
 ]
 
 export const Header: React.FC = () => {

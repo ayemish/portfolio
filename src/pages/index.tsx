@@ -21,7 +21,7 @@ const Home: NextPage = () => {
       <SelectedProjects />
       <OpenSource />
       <SkillSet />
-      <ContactMe />
+      {/* <ContactMe /> */}
     </MainLayout>
   )
 }
