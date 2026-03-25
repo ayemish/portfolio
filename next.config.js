@@ -44,7 +44,7 @@ module.exports = withBundleAnalyzer({
   redirects: async () => [
     {
       source: '/github',
-      destination: 'https://github.com/asim-shahid',
+      destination: 'https://github.com/Muhammad-Abdullah1',
       permanent: true,
     },
   ],

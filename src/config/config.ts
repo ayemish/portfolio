@@ -1,7 +1,7 @@
 import type { DefaultSeoProps } from 'next-seo'
 import { i18n } from '../../next-i18next.config'
 
-export const NAME = 'Muhammad Asim'
+export const NAME = 'Muhammad Abdullah'
 
 export const config: Config = {
   isDev: process.env.NODE_ENV === 'development',
@@ -69,7 +69,7 @@ export const config: Config = {
       { rel: 'shortcut icon', href: '/icons/favicon.ico' },
     ],
   },
-  github: 'https://github.com/asim-shahid',
+  github: 'https://github.com/Muhammad-Abdullah1',
 }
 
 interface Config {

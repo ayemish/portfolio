@@ -1,4 +1,4 @@
-# asim-portfolio
+# abdullah-portfolio
 
 > My portfolio website showcasing my projects, skills and more!
 
