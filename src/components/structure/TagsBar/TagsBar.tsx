@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
-import { Box, Button, HStack, useDimensions } from '@chakra-ui/react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { Box, Button, HStack } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 
 const MotionBox = motion(Box)
@@ -19,12 +19,18 @@ export const TagsBar: React.FC<TagsBarProps> = ({
 }) => {
   const [isSticky, setIsSticky] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
-  const dimensions = useDimensions(ref, true)
+
+  const handleScroll = useCallback(() => {
+    if (!ref.current) return
+    const rect = ref.current.getBoundingClientRect()
+    setIsSticky(rect.top <= HEADER_HEIGHT)
+  }, [])
 
   useEffect(() => {
-    if (!dimensions) return
-    setIsSticky(dimensions.borderBox.top <= HEADER_HEIGHT)
-  }, [dimensions])
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [handleScroll])
 
   return (
     <MotionBox

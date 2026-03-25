@@ -6,9 +6,9 @@
   "license": "MIT",
   "scripts": {
     "type-check": "tsc --pretty --noEmit",
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "node init && next dev",
+    "build": "node init && next build",
+    "start": "node init && next start",
     "lint": "eslint . --ext .js,.ts,.tsx",
     "lint:fix": "yarn lint --fix",
     "gen:theme-typings": "chakra-cli tokens theme/theme.ts",
